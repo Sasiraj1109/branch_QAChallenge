@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="QA Tech Challenge Automation Test Suite">
+
+	<listeners>
+		<listener class-name="com.qa.tech.extentreportlistener.ExtentReporterNG" />
+	</listeners>
+
+
+	<test name="QA Tech Challenge Automation Test Cases">
+		<classes>
+			<class name="com.qa.tech.testscripts.HomePageTest"></class>
+			<class name="com.qa.tech.testscripts.TeamPageTest"></class>
+			 	
+		</classes>
+	</test>
+</suite>
