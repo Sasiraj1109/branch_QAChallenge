@@ -1,5 +1,7 @@
 package com.qa.tech.util;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Set;
 
@@ -23,5 +25,11 @@ public class HelperUtil {
 			return false;
 		}
 		return list1.containsAll(list2);
+	}
+	
+	public static String getDomainName(String url) throws URISyntaxException {
+	    URI uri = new URI(url);
+	    String domain = uri.getHost();
+	    return domain.startsWith("www.") ? domain.substring(4) : domain;
 	}
 }

@@ -5,7 +5,10 @@
     <classes>
       <class name="com.qa.tech.testscripts.TeamPageTest">
         <methods>
-          <include name="teamPageEmpSocialAccount_clickEventTest"/>
+          <include name="teamPageEmployeeDeptsWithEachTabTest"/>
+          <include name="teamPageEmployeeNamesWithEachTabTest"/>
+          <include name="tearDown"/>
+          <include name="teamPageEmployeesWithEachTabTest"/>
           <include name="setUp"/>
         </methods>
       </class> <!-- com.qa.tech.testscripts.TeamPageTest -->

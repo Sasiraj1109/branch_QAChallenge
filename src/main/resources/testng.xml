@@ -11,6 +11,10 @@
 		<classes>
 			<class name="com.qa.tech.testscripts.HomePageTest"></class>
 			<class name="com.qa.tech.testscripts.TeamPageTest"></class>
+			<class name="com.qa.tech.testscripts.SignUpPageTest"></class>
+			<class name="com.qa.tech.testscripts.RequestDemoPageTest"></class>
+			<class name="com.qa.tech.testscripts.SocialPageTest"></class>
+			
 			 	
 		</classes>
 	</test>

@@ -2,6 +2,7 @@ package com.qa.tech.testpages;
 
 import static org.testng.Assert.fail;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,6 +23,7 @@ import org.testng.annotations.Listeners;
 
 import com.qa.tech.base.TestBase;
 import com.qa.tech.extentreportlistener.TestEventListener;
+import com.qa.tech.testscripts.SocialPageTest;
 import com.qa.tech.util.HelperUtil;
 
 @Listeners({TestEventListener.class})
@@ -67,8 +69,7 @@ public class TeamPage extends TestBase{
 	WebElement tabRecruit;
 	
 	//@FindBy(xpath = "//div[@class='info-block']/h2")
-	
-	
+		
 	@FindBy(xpath = "//div[@class='info-block']")
 	List<WebElement> empCount;
 	@FindBy(xpath = "//div[@class='info-block']/h4")
@@ -152,7 +153,8 @@ public class TeamPage extends TestBase{
 
 	}
 
-	// Scenario 4
+	//*********************** Scenario 4 *******************************************//
+	
 	public void validate_DepartmentsCount() {
 		HashSet<String> depts = new HashSet<String>();
 		for (int i = 0; i < allTeam.size(); i++) {
@@ -175,7 +177,7 @@ public class TeamPage extends TestBase{
 		Assert.assertTrue(true, "Tab matched with unique department tabs");
 	}
 
-	// scenario 5
+	//************************* scenario 5 ***********************************//
 
 	public void validate_EmployeesWithEachTab() {
 		tabAll.click();
@@ -198,7 +200,7 @@ public class TeamPage extends TestBase{
 		Assert.assertEquals(tab_team_count, all_Emp_Count, "Team count does not match with total count. Expected:"+all_Emp_Count+".Actual:"+tab_team_count);
 	}
 
-	// scenario 6
+	//*********************** scenario 6 ***********************************************//
 
 	public void validate_EmployeeNamesWithEachTab() {
 		tabAll.click();
@@ -249,7 +251,7 @@ public class TeamPage extends TestBase{
 
 	}
 
-	// scenario 7
+	//******************************* scenario 7 **********************************//
 
 	public void validate_EmployeeDeptsWithEachTab() {
 		tabAll.click();
@@ -348,25 +350,62 @@ public class TeamPage extends TestBase{
 
 	}
 	
-	//Scenario 8
-	public void validate_EmpSocialAccount_clickEvent(){
+    //****************************** Scenario 8.1 **************************************//
+	//Validation on Clicking the employee twitter icon should get navigated to correct destination domain url //
+	
+	public SocialPage validate_EmpSocialAccountTwitter_clickEvent() throws URISyntaxException{
 		tabAll.click();
 		System.out.println(empSocialLink.size());
 		for(int i=0; i<empSocialLink.size(); i++) {
 			List<WebElement> links= empSocialLink.get(i).findElements(By.xpath("//img"));
 			if(links.stream().anyMatch(x->x.getAttribute("src").contains("twitter")))
 			{
-				empSocialLink.get(i).click();
-			}
+				try{
+					empSocialLink.get(i).click();				
+				String expEmpSocialUrl  = "twitter.com";
+				String actualSocialUrl  = HelperUtil.getDomainName(driver.getCurrentUrl());
+				System.out.println(actualSocialUrl);
+				Assert.assertEquals(expEmpSocialUrl, actualSocialUrl,
+							"Expected destination url is not matching with actual url. Expected:"+expEmpSocialUrl+". Actual:"+actualSocialUrl);
+				 }
+				catch(org.openqa.selenium.StaleElementReferenceException ex) {
+					 ex.getStackTrace();
+				 }
+		     }
+			
+	     }
+		return new SocialPage();
+   }
+
+
+//****************************** Scenario 8.2 **************************************//
+//Validation on Clicking the employee git hub icon should get navigated to correct destination domain url //
+	
+	public SocialPage validate_EmpSocialAccountgitHub_clickEvent() throws URISyntaxException{
+		tabAll.click();
+		System.out.println(empSocialLink.size());
+		for(int i=1; i<empSocialLink.size(); i++) {
+			List<WebElement> links= empSocialLink.get(i).findElements(By.xpath("//img"));
 			if(links.stream().anyMatch(x->x.getAttribute("src").contains("github")))
 			{
-				empSocialLink.get(i).click();
-			}
-		
-		}
-		
-		
-	}
+				try{
+					empSocialLink.get(i).click();				
+				String expEmpSocialUrl  = "github.com";
+				String actualSocialUrl  = HelperUtil.getDomainName(driver.getCurrentUrl());
+				System.out.println(actualSocialUrl);
+				Assert.assertEquals(actualSocialUrl, expEmpSocialUrl,
+							"Actual destination url is not matching with Expected url. Expected:"+expEmpSocialUrl+". Actual:"+actualSocialUrl);
+				 }
+				catch(org.openqa.selenium.StaleElementReferenceException ex) {
+					 ex.getStackTrace();
+				 }
+		     }
+			
+	     }
+		return new SocialPage();
+   }	
+}
+
+
 	
 
-}

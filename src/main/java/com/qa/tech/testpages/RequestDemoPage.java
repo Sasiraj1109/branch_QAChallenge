@@ -15,17 +15,24 @@ public class RequestDemoPage extends TestBase {
 	@FindBy(xpath = "//div[@class='form-container']")
 	WebElement request_demo_form;
 	
+	@FindBy(xpath = "//*[@id='mktoForm_1488']/div[23]/span/button")
+	WebElement request_demo_submit;
+	
 	//Initializing the Page Objects
 		public RequestDemoPage() {
 		    PageFactory.initElements(driver, this);
 		    }
 		
-		//scenario 8.1
+//****************************** Scenario 9 **************************************//
+//Leaving all the fields blank and clicking on submit button throws only one validation at a time
 		public void validate_RequestDemoPage() {
-			request_demo_link.click();
-			String pageTitle = driver.getTitle();
-			
-			
+			try{
+				request_demo_link.click();
+				request_demo_form.click();
+			    request_demo_submit.click();
+			 }
+			catch(Error e) {
+				e.getMessage();
+			}
 		}
-	
 }

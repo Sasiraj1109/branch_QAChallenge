@@ -32,9 +32,7 @@ public class TestUtil extends TestBase{
 		catch(Exception e){
 			logger.log(status, null, e, e);
 		}
+		
 	}
-	
-	
-	
 	
 }

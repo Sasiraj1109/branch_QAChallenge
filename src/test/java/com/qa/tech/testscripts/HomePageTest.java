@@ -25,7 +25,7 @@ public class HomePageTest extends TestBase {
 	}
 	
 	@Test(priority=1)
-	public void searchNavigatePageTest() {
+	public void searchNavigateToHomePageTest() {
 	    homePage.SearchSite();
 	    String homeUrl = homePage.validateHomePageUrl();
 	    Assert.assertEquals(homeUrl, prop.getProperty("homePageUrl"));

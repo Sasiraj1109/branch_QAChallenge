@@ -45,7 +45,7 @@ public class HomePage extends TestBase {
 	    PageFactory.initElements(driver, this);
 	    }
 	
-	//Actions
+	//************************** Scenario 1 & 2 **********************************************//
 	public HomePage SearchSite() {
 		googleSearchBox.sendKeys(prop.getProperty("searchTerm"));
 		googleSearchBox.submit();
@@ -76,12 +76,7 @@ public class HomePage extends TestBase {
 		return homeLogo.isDisplayed();
 	    }
 	
-	public PricingPage clickOnPricingLink() {
-	     if (pricingLink.isDisplayed()) {
-	     pricingLink.click();
-	     }	    
-	     return new PricingPage();
-	}
+	
 	
 	public RequestDemoPage clickOnRequestDemoLink() {
 		requestDemoLink.isDisplayed();
@@ -89,6 +84,7 @@ public class HomePage extends TestBase {
 	    return new RequestDemoPage();
 	    }
 	
+	//********************************* scenario 2 *******************************************//
 	public TeamPage clickOnTeamPageLink() {
 		System.out.println("Number of footer links found: "+footerLinks.size());
 		System.out.println("Matched list:");

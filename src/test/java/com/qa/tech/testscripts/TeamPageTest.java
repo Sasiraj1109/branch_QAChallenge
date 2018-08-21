@@ -1,31 +1,36 @@
 package com.qa.tech.testscripts;
 
+import java.net.URISyntaxException;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.qa.tech.testpages.HomePage;
+import com.qa.tech.testpages.SocialPage;
 import com.qa.tech.testpages.TeamPage;
 
 public class TeamPageTest extends TeamPage{
 	TeamPage teamPage;
 	HomePage homePage;
+	SocialPage socialPage;
 	
 	public TeamPageTest() {
 	   super();
 	}
 	
 	@BeforeMethod
-	public void setUp() {
+	public void setUp() throws URISyntaxException {
 		
 		InitializeBrowser();
 		homePage = new HomePage();
 		homePage = homePage.SearchSite();
 		teamPage = homePage.clickOnTeamPageLink();
+		
 	}
 	
-	/*@Test(priority=1)
+	@Test(priority=1)
 	public void teamPageTitleUrlTest() {
 		String actTeamPageUrl = teamPage.validateTeamPageUrl();
 		Assert.assertEquals(actTeamPageUrl, prop.getProperty("expTeamPageUrl"), "Actual team page Url: "+actTeamPageUrl+" "
@@ -60,13 +65,17 @@ public class TeamPageTest extends TeamPage{
 	@Test(priority=6)
 	public void teamPageEmployeeDeptsWithEachTabTest() {
 		teamPage.validate_EmployeeDeptsWithEachTab();
-	   }*/
-	
-	@Test(priority=7)
-	public void teamPageEmpSocialAccount_clickEventTest() {
-		teamPage.validate_EmpSocialAccount_clickEvent();
 	   }
 	
+	@Test(priority=7)
+	public void teamPageEmpSocialTwitterAccount_clickEventTest() throws URISyntaxException {
+		teamPage.validate_EmpSocialAccountTwitter_clickEvent();
+	   }
+	
+	@Test(priority=8)
+	public void teamPageEmpSocialGithubAccount_clickEventTest() throws URISyntaxException {
+		teamPage.validate_EmpSocialAccountgitHub_clickEvent();
+	   }
 	
 	@AfterMethod
 	public void tearDown() {
